@@ -1,52 +1,22 @@
-import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import * as React from 'react';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 
-export default function App() {
+import HomeScreen from './src/HomeScreen';
+import CameraScreen from './src/CameraScreen';
+
+// const Stack = createStackNavigator();
+
+function App() {
   return (
-    <View style={{ flex: 1 }}>
-      <View style={styles.container}>
-        <Image
-          style={{ width: 200, height: 200 }}
-          blurRadius={3}
-          source={{
-            uri:
-              'https://townsquare.media/site/341/files/2013/01/tumblr_m938623abn1qg98zeo1_5001.jpg'
-          }}
-        />
-        <Text style={{ fontSize: 30 }}>Your progress: 35%</Text>
-        <View style={styles.button}>
-          <Text style={{ fontSize: 20 }}>Doge</Text>
-        </View>
-        <View style={styles.button}>
-          <Text style={{ fontSize: 20 }}>Cate</Text>
-        </View>
-      </View>
-      <View style={{ alignItems: 'center' }}>
-        <View style={styles.bottom}>
-          <Text style={{ fontSize: 30 }}>Camera</Text>
-        </View>
-      </View>
-    </View>
+    <HomeScreen></HomeScreen>
+    // <NavigationContainer>
+    //   <Stack.Navigator>
+    //     <Stack.Screen name="Home" component={HomeScreen} />
+    //     <Stack.Screen name="Camera" component={CameraScreen} />
+    //   </Stack.Navigator>
+    // </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  button: {
-    backgroundColor: 'green',
-    minWidth: 100,
-    margin: 2
-  },
-  bottom: {
-    backgroundColor: 'red',
-    height: 75,
-    width: 150,
-    bottom: 0,
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
-});
+export default App;
