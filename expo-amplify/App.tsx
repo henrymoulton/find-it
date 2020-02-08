@@ -1,11 +1,28 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {StyleSheet} from 'react-native';
+import AWSAppSyncClient from "aws-appsync";
+import Amplify from 'aws-amplify';
+import amplify from './aws-exports';
+import {ListTodos} from "./ListTodos";
+import {ApolloProvider} from 'react-apollo'
+
+const client = new AWSAppSyncClient({
+  url: amplify.aws_appsync_graphqlEndpoint,
+  region: amplify.aws_appsync_region,
+  auth: {
+    type: amplify.aws_appsync_authenticationType,
+    apiKey: amplify.aws_appsync_apiKey,
+  }
+});
+
+Amplify.configure(amplify)
 
 export default function App() {
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-    </View>
+      <ApolloProvider client={client}>
+        <ListTodos/>
+      </ApolloProvider>
   );
 }
 
